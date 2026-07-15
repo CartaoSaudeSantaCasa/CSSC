@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia Médico - Cartão Saúde | Santa Casa</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+  <header>
+    <img src="src/logos/logo_dourada.png" alt="Logo CSSC">
+    <div class="titulo_01">
+      <h2>Cartão<br>Saúde</h2>
+      <h3>Santa Casa</h3>
+    </div>
+  </header>
+
+  <main>
+    <!-- Container de busca -->
+    <section class="search-panel">
+
+      <h1>Guia Médico</h1>
+      
+      <!-- Filtros -->
+      <div class="filters-container">
+        <div class="filter-group">
+          <label for="filterRamo">Especialidade</label>
+          <select id="filterRamo" class="search-input">
+            <option value="">Todas as Especialidades</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filterParceiro">Parceiro</label>
+          <select id="filterParceiro" class="search-input">
+            <option value="">Todos os Parceiros</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filterTipo">Serviço</label>
+          <select id="filterTipo" class="search-input">
+            <option value="">Todos os Serviços</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="inputDescricao">Busca (Médico ou Procedimento)</label>
+          <input type="text" id="inputDescricao" class="search-input" placeholder="Digite o nome...">
+        </div>
+        <div class="filter-group">
+          <label for="filterFaixaDesconto">Faixa de Desconto</label>
+          <select id="filterFaixaDesconto" class="search-input">
+            <option value="">Todas as Faixas</option>
+          </select>
+        </div>
+      </div>
+
+    </section>
+    <!-- Container de resultados -->
+    <section aria-label="Resultados da busca" class="section_resultados">
+    	<div id="results" role="list"></div>
+    </section>
+
+  </main>
+
+
+  <script src="src/main.js"></script>
+</body>
+</html>
