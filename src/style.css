@@ -117,17 +117,6 @@ main {
   color: var(--brand-blue-light);
 }
 
-.filters-container {
-  border: 1px solid var(--border-color);  /* trocado #e2e8f0 por variável */
-  border-radius: 10px;
-  padding: 15px;
-  margin-bottom: 21px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  align-items: flex-end;
-}
-
 .section_resultados {
   border: 1px dashed rgba(194, 159, 68, 0.4);
   border-radius: 10px;
@@ -138,10 +127,23 @@ main {
    SISTEMA DE FILTROS E INPUTS
    ========================================= */
 
+.filters-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 21px;
+}
+
+.filters-container .filter-group:last-child {
+  grid-column: 1 / -1; 
+}
+
 .filter-group {
   display: flex;
   flex-direction: column;
-  flex: 1 1 250px;
 }
 
 .filter-group:nth-child(1) { flex-basis: 150px; }
