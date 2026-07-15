@@ -1,0 +1,296 @@
+:root {
+  /* Cores da Marca */
+  --brand-white: #FFFFFF;
+  --brand-gold-light: #F7D059;
+  --brand-gold-dark: #C29F44;
+  --brand-blue-light: #274070;
+  --brand-blue-dark: #15173B;
+
+  /* Cores de Apoio */
+  --bg-color: #f0f4f8;
+  --text-muted: #4e5768;
+  --border-color: #e2e8f0;
+
+  /* Gradiente Principal */
+  --gradient-blue: linear-gradient(135deg, var(--brand-blue-light) 0%, var(--brand-blue-dark) 100%);
+
+  /* Tipografia especial (evita repetição) */
+  --font-display: 'League Spartan', 'Futura', 'Avenir', sans-serif;
+}
+
+/* Reset global com box-sizing já incluso */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--brand-blue-dark);
+  gap: 21px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* =========================================
+   CABEÇALHO GERAL (HEADER)
+   ========================================= */
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 21px;
+  padding: 13px;
+  border-radius: 12px;
+  background: var(--gradient-blue);
+  color: var(--brand-white);
+  box-shadow: 0 8px 16px rgba(39, 64, 112, 0.15);
+  width: 70%;
+  margin: 25px auto 0;
+}
+
+.titulo_01 {
+  text-align: center;
+}
+
+header img {
+  width: 80px;
+  height: auto;
+}
+
+header h2,
+header h3 {
+  color: #EBEBEB;
+  font-family: var(--font-display);
+  text-align: center;
+}
+
+header h2 {
+  margin: 0;
+  letter-spacing: 0.03em;
+  font-weight: 800;
+  font-size: 2.0rem;
+  line-height: 0.9;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+}
+
+header h3 {
+  margin-top: 8px;
+  letter-spacing: 0.55em;
+  padding-left: 0.55em;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.1));
+}
+
+/* =========================================
+   CONTAINERS PRINCIPAIS
+   ========================================= */
+
+main {
+  width: 70%;
+  margin: 0 auto 34px;
+}
+
+.search-panel {
+  margin-bottom: 20px;
+  padding: 15px 25px;
+  background-color: var(--brand-white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.search-panel h1 {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.0rem;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: var(--brand-blue-light);
+}
+
+.section_resultados {
+  border: 1px dashed rgba(194, 159, 68, 0.4);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+/* =========================================
+   SISTEMA DE FILTROS E INPUTS
+   ========================================= */
+
+.filters-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 21px;
+}
+
+.filters-container .filter-group:last-child {
+  grid-column: 1 / -1; 
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group:nth-child(1) { flex-basis: 150px; }
+.filter-group:nth-child(2) { flex-basis: 200px; }
+.filter-group:nth-child(4) { flex: 3 1 550px; }
+.filter-group:nth-child(5) { flex: 2 1 250px; }
+
+.filter-group label {
+  margin: 0 0 4px 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--brand-blue-light);
+  cursor: pointer;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-color);
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: var(--brand-white);
+  border-color: var(--brand-gold-dark);
+  box-shadow: 0 0 0 3px rgba(194, 159, 68, 0.15);
+}
+
+/* =========================================
+   ESTRUTURA DO CARD ESTILO PDF
+   ========================================= */
+
+.card-pdf {
+  background: var(--brand-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  margin-bottom: 21px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-pdf:hover {
+  transform: scale(1.01);
+  box-shadow: 0 16px 32px rgba(39, 64, 112, 0.15);
+}
+
+.card-pdf-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5% 5%;
+  gap: 50px;
+}
+
+.brand-area, .contact-area {
+  flex: 0 0 40%; /* Crescimento 0, Encolhimento 0, Base Fixa de 40% */
+}
+
+.contact-area {
+  text-align: right; /* Joga os dados de contato para a extremidade */
+}
+
+.brand-area h2 {
+  margin: 0;
+  color: var(--brand-blue-dark);
+  font-size: 1.5rem;
+}
+
+.brand-area p {
+  margin-top: 4px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.contact-area p {
+  aling-itens: botton;
+  margin: 4px 0;
+  font-size: 0.9rem;
+  color: var(--brand-blue-dark);
+  text-align: left;
+  white-space: pre-line;
+}
+
+/* --- Tabela de Procedimentos --- */
+
+.card-pdf-body {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.price-table thead th {
+  padding: 8px 10px;
+  color: var(--brand-white);
+  font-weight: 600;
+  vertical-align: middle;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.price-table th:nth-child(1) { background-color: var(--brand-blue-dark); }
+.price-table th:nth-child(2) { background-color: var(--brand-gold-dark); }
+.price-table th.col-cartao { background-color: var(--brand-gold-light); }
+.price-table th.col-desconto { background-color: var(--brand-blue-light); }
+
+.price-table tbody tr {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.price-table tbody tr:nth-child(even) {
+  background-color: var(--bg-color);
+}
+
+.price-table tbody td {
+  padding: 14px 10px;
+  color: var(--brand-blue-dark);
+}
+
+.price-table td.text-left {
+  text-align: left;
+  padding-left: 21px;
+  font-weight: 500;
+}
+
+.price-table td.destaque-cartao {
+  font-weight: 700;
+  color: var(--brand-blue-dark);
+}
+
+/* --- Ajuste de Largura das Colunas (4 Colunas) --- */
+
+.price-table th:nth-child(2),
+.price-table th.col-cartao,
+.price-table th.col-desconto {
+  width: 18%;
+}
+
+.price-table th:nth-child(1) {
+  width: auto;
+}
