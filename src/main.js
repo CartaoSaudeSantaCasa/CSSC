@@ -15,6 +15,7 @@ const filters = {
 let isUpdating = false; // trava para evitar loops
 
 // ============ CARGA INICIAL ============
+// ============ CARGA INICIAL ============
 async function loadData() {
   try {
     resultsContainer.innerHTML = '<p style="text-align: center; color: var(--brand-blue-dark); grid-column: 1 / -1;">Sincronizando com o banco oficial...</p>';
@@ -28,6 +29,8 @@ async function loadData() {
 
       const parceiro = col[0];
       if (!parceirosMap.has(parceiro)) {
+        const prio = parseInt(col[11], 10); // Lê a coluna L (índice 11)
+        
         parceirosMap.set(parceiro, {
           parceiro: parceiro,
           telefone: col[1] || '-',
@@ -35,6 +38,7 @@ async function loadData() {
           ramos: new Set(),
           tipos: new Set(),
           logo: col[10] || '',
+          prioridade: isNaN(prio) ? 999 : prio, // Joga para o fim da fila quem não tem prioridade
           procedimentos: []
         });
       }
@@ -44,6 +48,8 @@ async function loadData() {
       if (col[4]) pData.tipos.add(col[4]);
 
       pData.procedimentos.push({
+        ramo: col[3] || '',
+        tipo: col[4] || '',
         descricao: col[5] || '-',
         faixaDesconto: col[6] || '-',
         valPart: col[7] || '-',
@@ -52,7 +58,9 @@ async function loadData() {
       });
     });
 
-    dadosAgrupados = Array.from(parceirosMap.values());
+    // Extrai os valores do Map e já ordena na memória (Eficiência máxima na busca)
+    dadosAgrupados = Array.from(parceirosMap.values()).sort((a, b) => a.prioridade - b.prioridade);
+    
     updateSelectOptions(); // preenche os selects iniciais
     handleSearch();        // exibe todos (ou limitado)
   } catch (error) {
@@ -196,14 +204,18 @@ function handleSearch(e) {
         (vTipo && !Array.from(item.tipos).some(t => t.toLowerCase() === vTipo))) continue;
 
     // Filtro por texto: busca em parceiro, ramo, tipo e procedimentos
-    const parentMatch = !vDesc ||
-                        item.parceiro.toLowerCase().includes(vDesc) ||
-                        Array.from(item.ramos).join(' ').toLowerCase().includes(vDesc) ||
-                        Array.from(item.tipos).join(' ').toLowerCase().includes(vDesc);
+    const parentMatch = !vDesc || item.parceiro.toLowerCase().includes(vDesc);
 
     const matches = item.procedimentos.filter(p => {
-      const descMatch = p.descricao.toLowerCase().includes(vDesc);
+      // descMatch agora varre a descrição, o ramo e o tipo específicos DESTA linha
+      const descMatch = !vDesc || 
+                        p.descricao.toLowerCase().includes(vDesc) ||
+                        p.ramo.toLowerCase().includes(vDesc) ||
+                        p.tipo.toLowerCase().includes(vDesc);
+                        
       const faixaMatch = !vFaixa || p.faixaDesconto.toLowerCase() === vFaixa;
+      
+      // Retorna a linha se a clínica for o alvo OU se o termo estiver nesta linha exata
       return (parentMatch || descMatch) && faixaMatch;
     });
 
