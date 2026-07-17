@@ -407,7 +407,7 @@ body::after {
     font-weight: 400;
   }
 .price-table td.text-left {
-    text-align: justify;
+    text-align: left;
     padding: 4px;
     font-weight: 400;
   }
