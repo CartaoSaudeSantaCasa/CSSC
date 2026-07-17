@@ -15,7 +15,6 @@ const filters = {
 let isUpdating = false; // trava para evitar loops
 
 // ============ CARGA INICIAL ============
-// ============ CARGA INICIAL ============
 async function loadData() {
   try {
     resultsContainer.innerHTML = '<p style="text-align: center; color: var(--brand-blue-dark); grid-column: 1 / -1;">Sincronizando com o banco oficial...</p>';
@@ -143,10 +142,14 @@ function renderCards(lista) {
                 ? `<img src="${item.logo}" alt="Logo" style="max-width: 100%; max-height: 125px; object-fit: contain; border-radius: 4px;">`
                 : `<h2>${item.parceiro}</h2><p>${Array.from(item.ramos).join(' / ')}</p>`}
           </div>
+          
+          <hr class="divisor-mobile">
+          
           <div class="contact-area">
             <p>📞 ${item.telefone}</p>
-            <p>📍 ${item.endereco.replace(/\s*\|\s*/g, '<br>📍 ')}</p>
+            ${item.endereco.split(/\s*\|\s*/).map(end => `<p>📍 ${end}</p>`).join('')}
           </div>
+        </div>
         </div>
         <div class="card-pdf-body">
           <table class="price-table">

@@ -11,18 +11,15 @@
   --the-color: #0c3481;
   --text-muted: #4e5768;
   --border-color: #e2e8f0;
+  --subtle-gold: rgba(194, 159, 68, 0.4);
 
-  /* Gradiente Principal */
+  /* Gradiente e fonte */
   --gradient-blue: linear-gradient(135deg, var(--brand-blue-light) 0%, var(--brand-blue-dark) 100%);
-
-  /* Tipografia especial (evita repetição) */
   --font-display: 'League Spartan', 'Futura', 'Avenir', sans-serif;
 }
 
-/* Reset global com box-sizing já incluso */
-*,
-*::before,
-*::after {
+/* Reset maroto */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -37,10 +34,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
-/* =========================================
-   CABEÇALHO GERAL (HEADER)
-   ========================================= */
 
 header {
   display: flex;
@@ -57,43 +50,36 @@ header {
   margin: 25px auto 0;
 }
 
-.titulo_01 {
-  text-align: center;
-}
-
 header img {
   width: 80px;
   height: auto;
 }
 
-header h2,
-header h3 {
-  color: #EBEBEB;
-  font-family: var(--font-display);
+.titulo_01 {
   text-align: center;
 }
 
 header h2 {
   margin: 0;
-  letter-spacing: 0.03em;
   font-weight: 800;
   font-size: 2.0rem;
   line-height: 0.9;
+  letter-spacing: 0.03em;
+  font-family: var(--font-display);
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
 }
 
 header h3 {
   margin-top: 8px;
-  letter-spacing: 0.55em;
-  padding-left: 0.55em;
   font-size: 0.6rem;
+  padding-left: 0.55em;
+  letter-spacing: 0.55em;
   text-transform: uppercase;
+  font-family: var(--font-display);
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.1));
 }
 
-/* =========================================
-   CONTAINERS PRINCIPAIS
-   ========================================= */
+/* =============== CONTAINERS PRINCIPAIS =============== */
 
 main {
   width: 70%;
@@ -106,7 +92,7 @@ main {
   background-color: var(--brand-white);
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
 .search-panel h1 {
@@ -120,14 +106,12 @@ main {
 }
 
 .section_resultados {
-  border: 1px dashed rgba(194, 159, 68, 0.4);
+  border: 1px dashed var(--subtle-gold);
   border-radius: 10px;
-  padding: 10px;
+  padding: 8px;
 }
 
-/* =========================================
-   SISTEMA DE FILTROS E INPUTS
-   ========================================= */
+/* =============== FILTROS E INPUTS =============== */
 
 .filters-container {
   display: grid;
@@ -147,11 +131,6 @@ main {
   display: flex;
   flex-direction: column;
 }
-
-.filter-group:nth-child(1) { flex-basis: 150px; }
-.filter-group:nth-child(2) { flex-basis: 200px; }
-.filter-group:nth-child(4) { flex: 3 1 550px; }
-.filter-group:nth-child(5) { flex: 2 1 250px; }
 
 .filter-group label {
   margin: 0 0 4px 4px;
@@ -178,9 +157,7 @@ main {
   box-shadow: 0 0 0 3px rgba(194, 159, 68, 0.15);
 }
 
-/* =========================================
-   ESTRUTURA DO CARD ESTILO PDF
-   ========================================= */
+/* =============== CARDS =============== */
 
 .card-pdf {
   background: var(--brand-white);
@@ -189,28 +166,34 @@ main {
   overflow: hidden;
   border: 1px solid var(--border-color);
   margin-bottom: 21px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.4s ease, box-shadow 0.2s ease;
 }
 
 .card-pdf:hover {
-  transform: scale(1.01);
-  box-shadow: 0 16px 32px rgba(39, 64, 112, 0.15);
+  transform: scaleX(1.01) translateY(-4px);
+  box-shadow: 0 16px 32px rgba(39, 64, 112, 0.2);
 }
 
 .card-pdf-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5% 5%;
+  padding: 3% 3%;
   gap: 50px;
 }
 
-.brand-area, .contact-area {
-  flex: 0 0 40%; /* Crescimento 0, Encolhimento 0, Base Fixa de 40% */
+.brand-area {
+  flex: 0 0 40%;
 }
 
 .contact-area {
-  text-align: right; /* Joga os dados de contato para a extremidade */
+  flex: 0 0 40%;
+  text-align: right;
+}
+
+/* Oculta a linha divisória em telas de computador */
+.divisor-mobile {
+  display: none;
 }
 
 .brand-area h2 {
@@ -227,7 +210,7 @@ main {
 
 .contact-area p {
   aling-itens: botton;
-  margin: 4px 0;
+  margin: 1px 0;
   font-size: 0.9rem;
   color: var(--brand-blue-dark);
   text-align: left;
@@ -258,8 +241,8 @@ main {
 
 .price-table th:nth-child(1) { background-color: var(--brand-blue-dark); }
 .price-table th:nth-child(2) { background-color: var(--brand-gold-dark); }
-.price-table th.col-cartao { background-color: var(--brand-gold-light); }
-.price-table th.col-desconto { background-color: var(--brand-blue-light); }
+.price-table th:nth-child(3) { background-color: var(--brand-gold-light); }
+.price-table th:nth-child(4) { background-color: var(--brand-blue-light); }
 
 .price-table tbody tr {
   border-bottom: 1px solid var(--border-color);
@@ -285,20 +268,17 @@ main {
   color: var(--brand-blue-dark);
 }
 
-/* --- Ajuste de Largura das Colunas (4 Colunas) --- */
-
 .price-table th:nth-child(2),
-.price-table th.col-cartao,
-.price-table th.col-desconto {
+.price-table th:nth-child(3),
+.price-table th:nth-child(4) {
   width: 18%;
 }
 
 .price-table th:nth-child(1) {
   width: auto;
 }
-/* =========================================
-   MARCAS D'ÁGUA DE FUNDO (LATERAIS)
-   ========================================= */
+/* =============== MARCAS D'ÁGUA LATERAIS =============== */
+
 body::before,
 body::after {
   content: "";
@@ -324,7 +304,7 @@ body::after {
   top: 48%;
   right: 2%;
 }
-/* ============ EASTER EGG (DOBRA) ============ */
+
 #assinatura-fold {
   position: absolute;
   top: 0;
@@ -352,4 +332,83 @@ body::after {
   width: 90px;
   color: #f7d059b8;
   box-shadow: -4px 6px 15px rgba(0,0,0,0.4);
+}
+
+/* =============== Configurações para telefone =============== */
+
+@media (max-width: 768px) {
+  header, main {
+    width: 96%;
+    margin-top: 10px;
+  }
+
+  header {
+    padding: 15px;
+  }
+  
+  /* Empilha os filtros */
+  .filters-container {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Empilha o cabeçalho dos resultados */
+  .card-pdf-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 0px;
+    gap: 5px;
+  }
+    
+  .brand-area {
+    padding: 30px 20px 0px 20px;
+  }
+
+  .contact-area {
+    text-align: center;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+/* Exibe e estiliza a linha divisória apenas no celular */
+  .divisor-mobile {
+    display: block;
+    width: 90%;
+    border: none;
+    border-top: 2px solid var(--border-color);
+    margin: 5px 0;
+  }
+
+.contact-area p {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: var(--brand-blue-dark);
+  text-align: left;
+  white-space: pre-line;
+  padding-left: 1.4rem;
+  text-indent: -1.4rem;
+  }
+  
+  /* Marca Dagua */
+  body::before, 
+  body::after {
+    opacity: 0.8; 
+    width: 300px;
+  }
+
+  .price-table th:nth-child(2),
+  .price-table th:nth-child(3),
+  .price-table th:nth-child(4) {
+    width: 20%;
+  }
+.price-table tbody td {
+    padding: 10px 2px;}
+
+.price-table td.destaque-cartao {
+    font-weight: 400;
+  }
+.price-table td.text-left {
+    text-align: justify;
+    padding: 4px;
+    font-weight: 400;
+  }
 }
