@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia Médico - Cartão Saúde | Santa Casa</title>
+  <title>Guia Médico - Cartão Saúde Santa Casa</title>
   <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
@@ -17,8 +17,8 @@
   </header>
 
   <main>
-    <!-- Container de busca -->
-    <section class="search-panel">
+    
+    <section class="search-panel"> <!-- Caixa de pesquisa -->
 
       <h1>Guia Médico</h1>
       
@@ -36,6 +36,7 @@
             <option value="">Todos os Parceiros</option>
           </select>
         </div>
+
         <div class="filter-group">
           <label for="filterTipo">Serviço</label>
           <select id="filterTipo" class="search-input">
@@ -48,21 +49,23 @@
             <option value="">Todas as Faixas</option>
           </select>
         </div>
+
         <div class="filter-group">
           <label for="inputDescricao">Busca direta (Parceiro, Médico ou Procedimento)</label>
           <input type="text" id="inputDescricao" class="search-input" placeholder="Digite o nome...">
         </div>
+
       </div>
 
     </section>
-    <!-- Container de resultados -->
     <section aria-label="Resultados da busca" class="section_resultados">
-    	<div id="results" role="list"></div>
+    	<div id="results" role="list">
+	</div>
     </section>
 
   </main>
 
-
   <script src="src/main.js"></script>
+
 </body>
 </html>
