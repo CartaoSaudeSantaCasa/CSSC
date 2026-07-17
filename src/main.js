@@ -238,3 +238,7 @@ Object.values(filters).forEach(input => {
 });
 
 loadData();
+// ============ EASTER EGG (10% de chance) ============
+if (Math.random() < 0.05) {
+  document.querySelector('header').insertAdjacentHTML('beforeend', '<div id="assinatura-fold">by: Lucas Lima</div>');
+}
